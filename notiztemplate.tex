@@ -1,0 +1,39 @@
+\documentclass[a4paper,oneside]{scrartcl}				% use the class "article" from KOMA-Scripts
+\usepackage{microtype} 								% improved typography
+\usepackage{lastpage} 								% enables total page count (page x of y)
+\usepackage{url}									% prevents "ugly" line-breaks in URLs
+\usepackage{polyglossia} 							% package for multi-language support
+\setdefaultlanguage[spelling=new]{german} 				% set language to german
+\usepackage{fontspec}								% enable font selection in XeLaTeX
+\setmainfont{$mainfont$} 							% Variable mainfont is pulled from the command line --variable mainfont="fontname"
+\usepackage{amssymb,amsmath} 							% enable LaTeX mathematical notation
+\usepackage{hyperref}								% enable PDF meta-data, referencing and table of contents from headers
+\usepackage{fancyhdr}								% package that allows custom headers and footers
+\pagestyle{fancy}									% set the style of the page to use fancyhdr
+\hypersetup{pdftitle={$topic$},pdfauthor={$author-meta$}}	% write into PDF meta-data: topic into title and set author
+\date{$date$}										% set the date to the date in the markdown file
+\renewcommand{\headrulewidth}{1pt} 					% 1pt line below header
+\renewcommand{\footrulewidth}{1pt}						% 1pt line over footer
+\providecommand{\tightlist}{\setlength{\itemsep}			% necessary to parse itemized lists - line 1
+{0pt}\setlength{\parskip}{0pt}}						% necessary to parse itemized lists - line 2
+
+% left, center and right header. If the Markdown file has no date, use today`s date
+\lhead{$topic$}
+\chead{ }
+\rhead{
+	$if(date)$
+	$date$
+	$else$
+	\today
+	$endif$
+}
+
+% left, center and right footer
+\lfoot{$author-meta$}
+\cfoot{}
+\rfoot{Seite \thepage\ von \pageref*{LastPage}}
+
+% the markdown file is inserted into the document
+\begin{document}
+$body$
+\end{document}
