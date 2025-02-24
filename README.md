@@ -11,7 +11,7 @@ It shuold be:
 ---
 date: xx.yy.zz or empty
 author: put the name of the author here
-topic: pur the topic here
+topic: put the topic here
 ---
 ```
 
